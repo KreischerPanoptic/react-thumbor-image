@@ -1,6 +1,6 @@
 ![React Thumbor Image Logo](https://raw.githubusercontent.com/KreischerPanoptic/react-thumbor-image/main/docs/images/react-thumbor-image-logo.png)
 
-# 🚀 React Thumbor Image
+# ⚛️ React Thumbor Image
 
 This [React](https://react.dev) component makes it easy to add images which uses [Thumbor](https://www.thumbor.org) as engine for optimization.
 
