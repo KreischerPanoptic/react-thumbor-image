@@ -8,8 +8,8 @@
     "image-optimization",
     "optimization"
   ],
-  "version": "0.1.1",
-  "main": "build/react-thumbor-img.cjs.js",
+  "version": "0.1.2",
+  "main": "build/index.ts",
   "module": "build/react-thumbor-img.js",
   "types": "./build/index.d.ts",
   "description": "Makes it easy to add Thumbor optimized images to your Astro app.",
