@@ -278,5 +278,6 @@ sign the URL for you.
 
 ## Acknowledgements
 
-Without the amazing work of the [React](https://react.dev) team and [Thumbor](https://www.thumbor.org) team and [React Lazy Load Image Component](https://github.com/Aljullu/react-lazy-load-image-component), this project would not be possible.
+Without the amazing work of the [React](https://react.dev) team and [Thumbor](https://www.thumbor.org) team and [react-lazy-loading-image](https://github.com/mayankshubham/react-lazy-loading-image) for inspiration to make ```<ThumborOptimizedImage/>``` React Component
+(who knew that writing that implementation of component in React would be harder than the same, but with Astro 😅), this project would not be possible.
 Many thanks to them! ❤️

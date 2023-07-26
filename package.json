@@ -1,5 +1,5 @@
 {
-  "name": "react-thumbor-image",
+  "name": "react-thumbor-image-test",
   "keywords": [
     "react",
     "thumbor",
@@ -8,7 +8,7 @@
     "image-optimization",
     "optimization"
   ],
-  "version": "0.1.6",
+  "version": "0.1.11",
   "main": "build/react-thumbor-image.cjs.js",
   "module": "build/react-thumbor-image.js",
   "types": "./build/index.d.ts",
@@ -21,16 +21,24 @@
     "type": "git",
     "url": "https://github.com/KreischerPanoptic/react-thumbor-image"
   },
+  "style": "build/thumborOptimizedImage.min.css",
   "files": [
     "build/*.js",
-    "build/*.d.ts"
+    "build/*.d.ts",
+    "build/*.css",
+    "module"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
   ],
   "author": "Dennis Soroka",
   "license": "MIT",
   "scripts": {
-    "build": "npm run build:types && npm run build:js",
+    "build": "npm run build:types && npm run build:js && npm run css",
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "rollup -c",
+    "css": "sass --style compressed module/thumborOptimizedImage.scss > build/thumborOptimizedImage.min.css",
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
