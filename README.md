@@ -278,5 +278,5 @@ sign the URL for you.
 
 ## Acknowledgements
 
-Without the amazing work of the [React](https://react.dev) team and [Thumbor](https://www.thumbor.org) team, this project would not be possible.
+Without the amazing work of the [React](https://react.dev) team and [Thumbor](https://www.thumbor.org) team and [React Lazy Load Image Component](https://github.com/Aljullu/react-lazy-load-image-component), this project would not be possible.
 Many thanks to them! ❤️

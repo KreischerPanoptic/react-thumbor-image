@@ -8,18 +8,18 @@
     "image-optimization",
     "optimization"
   ],
-  "version": "0.1.4",
+  "version": "0.1.6",
   "main": "build/react-thumbor-image.cjs.js",
   "module": "build/react-thumbor-image.js",
   "types": "./build/index.d.ts",
-  "description": "Makes it easy to add Thumbor optimized images to your Astro app.",
-  "homepage": "https://github.com/KreischerPanoptic/astro-thumbor-image#readme",
+  "description": "Makes it easy to add Thumbor optimized images to your React app.",
+  "homepage": "https://github.com/KreischerPanoptic/react-thumbor-image#readme",
   "bugs": {
-    "url": "https://github.com/KreischerPanoptic/astro-thumbor-image/issues"
+    "url": "https://github.com/KreischerPanoptic/react-thumbor-image/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KreischerPanoptic/astro-thumbor-image"
+    "url": "https://github.com/KreischerPanoptic/react-thumbor-image"
   },
   "files": [
     "build/*.js",
@@ -46,6 +46,7 @@
     "@types/crypto-js": "^4.1.1",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.39",
+    "@types/prop-types": "^15.7.5",
     "@types/react": "^18.2.16",
     "@types/react-dom": "^18.2.7",
     "babel-jest": "^27.4.2",
@@ -78,6 +79,7 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
     "prompts": "^2.4.2",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
     "react-dev-utils": "^12.0.1",
