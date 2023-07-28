@@ -1,7 +1,6 @@
 import React, {useRef, useState} from "react";
 import {buildUrl, OptimizedImageProps, srcSetToString} from "./types";
-import {useIntersection} from "./lazy/intersectionObserver";
-var classnames = require('classnames');
+
 function ThumborOptimizedImage(props: OptimizedImageProps) {
     const fallbackimage = props.fallback.thumbor ? buildUrl(props.fallback.src, props.fallback.thumbor).toString() : props.fallback.src;
     const [isLoaded, setIsLoaded] = useState(false);
@@ -11,9 +10,7 @@ function ThumborOptimizedImage(props: OptimizedImageProps) {
     return (
         <>
             <img
-                className={classnames('react-thumbor-image', 'thumb', props.lowres.class ? props.lowres.class : '', {
-                    ['isLoaded']: !!isLoaded
-                })}
+                className={`react-thumbor-image thumb ${props.lowres.class ? props.lowres.class : ''} ${!!isLoaded ? 'isLoaded' : ''}`}
                 src={props.lowres.thumbor ? buildUrl(props.lowres.src, props.lowres.thumbor).toString() : props.lowres.src}
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping
@@ -27,9 +24,7 @@ function ThumborOptimizedImage(props: OptimizedImageProps) {
                 srcSet={props.lowres.srcset ? srcSetToString(props.lowres.srcset) : ''}
             />
             <img
-                className={classnames('react-thumbor-image', props.class ? props.class : '', {
-                    ['isLoaded']: !!isLoaded
-                })}
+                className={`react-thumbor-image ${props.class ? props.class : ''} ${!!isLoaded ? 'isLoaded' : ''}`}
                 src={props.thumbor ? buildUrl(props.src, props.thumbor).toString() : props.src}
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null; // prevents looping

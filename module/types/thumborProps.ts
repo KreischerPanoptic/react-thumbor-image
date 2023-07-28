@@ -1,8 +1,15 @@
 import type {AbstractThumborFilterProp, Color, HtmlColor} from "./thumborFilters";
-import {encodeURL, srcToUrl} from "./utils";
-var HmacSHA1 = require("crypto-js/hmac-sha1");
-var Base64 = require("crypto-js/enc-base64");
+//import HmacSHA1 from "crypto-js/hmac-sha1";
+//import Base64 from "crypto-js/enc-base64";
+import jsSHA from "jssha";
 
+export function srcToUrlLocal(src: string): URL {
+    return new URL(src);
+}
+
+export function encodeURLLocal(src: URL) : string {
+    return encodeURIComponent(src.toString());
+}
 
 export interface ThumborTrimProps {
     trimMode: "top-left" | "bottom-right" | "auto";
@@ -457,13 +464,14 @@ export function buildUrl(imageSrc: string, thumborProps: ThumborProps): URL {
         if(result.extractionProps) {
             let cropPart = `${url.replace(/(^\w+:|^)\/\//, '')}`;
             let cropMainPart = `/${result.extractionProps.topLeft.x}x${result.extractionProps.topLeft.y}:${result.extractionProps.bottomRight.x}x${result.extractionProps.bottomRight.y}`;
-            cropMainPart += '/' + encodeURL(srcToUrl(imageSrc));
+            cropMainPart += '/' + encodeURLLocal(srcToUrlLocal(imageSrc));
             //console.log('cropMainPart: ', cropMainPart)
             //console.log('cropPart: ', cropPart)
             if(thumborProps.key && thumborProps.key.length > 0) {
                 //console.log('to sign: ', mainUrlPart.substring(1, mainUrlPart.length));
-                let key = HmacSHA1(cropMainPart.substring(1, cropMainPart.length), thumborProps.key);
-                key = Base64.stringify(key);
+                let hmacSHA1 = new jsSHA('SHA-1', 'TEXT', { hmacKey: { value: thumborProps.key, format: 'TEXT' } });
+                let key: any = hmacSHA1.update(cropMainPart.substring(1, cropMainPart.length)).getHMAC('B64');
+                //key = Base64.stringify(key);
 
                 key = key.replace(/\+/g, '-').replace(/\//g, '_');
 
@@ -476,18 +484,19 @@ export function buildUrl(imageSrc: string, thumborProps: ThumborProps): URL {
             //console.log('mainUrlPart after extraction focal crop: ', mainUrlPart)
         }
         else {
-            mainUrlPart += `/${encodeURL(srcToUrl(imageSrc))}`;
+            mainUrlPart += `/${encodeURLLocal(srcToUrlLocal(imageSrc))}`;
         }
         //console.log('mainUrlPart after adding source: ', mainUrlPart)
     }
     else {
-        mainUrlPart += `/${encodeURL(srcToUrl(imageSrc))}`;
+        mainUrlPart += `/${encodeURLLocal(srcToUrlLocal(imageSrc))}`;
     }
 
     if(thumborProps.key && thumborProps.key.length > 0) {
         //console.log('to sign: ', mainUrlPart.substring(1, mainUrlPart.length));
-        let key = HmacSHA1(mainUrlPart.substring(1, mainUrlPart.length), thumborProps.key);
-        key = Base64.stringify(key);
+        let hmacSHA1 = new jsSHA('SHA-1', 'TEXT', { hmacKey: { value: thumborProps.key, format: 'TEXT' } });
+        let key: any = hmacSHA1.update(mainUrlPart.substring(1, mainUrlPart.length)).getHMAC('B64');
+        //key = Base64.stringify(key);
 
         key = key.replace(/\+/g, '-').replace(/\//g, '_');
 
